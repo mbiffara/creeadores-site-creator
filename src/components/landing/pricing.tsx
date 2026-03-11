@@ -1,8 +1,9 @@
 "use client"
 
-import { Check, Rocket, TrendingUp, Building2, Users, Megaphone, Percent, ArrowRight, Phone, type LucideIcon } from "lucide-react"
+import { Check, Rocket, TrendingUp, Building2, Users, Megaphone, Percent, ArrowRight, Phone, BadgeDollarSign, type LucideIcon } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { appLink } from "@/lib/links"
+import ShinyText from "@/components/ui/shiny-text"
 import type { PricingPlan } from "@/lib/i18n"
 
 const planIconMap: Record<string, LucideIcon> = {
@@ -23,17 +24,27 @@ export function Pricing() {
   const t = dictionary.home.pricing
 
   return (
-    <section className="py-24 px-6 lg:px-16 bg-[#FAFAFE]">
-      <div className="max-w-[1440px] mx-auto">
+    <section id="pricing" className="relative py-16 sm:py-24 px-4 sm:px-6 lg:px-16 bg-[#FAFAFE] overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "radial-gradient(circle, rgba(0, 25, 218, 0.07) 1.2px, transparent 1.2px)", backgroundSize: "16px 16px" }} />
+      <div className="relative max-w-[1440px] mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-16">
           <span
-            className="inline-block px-4 py-1.5 rounded-full text-white mb-5"
-            style={{ backgroundColor: "#0019DA", fontSize: "12px", fontWeight: 600, letterSpacing: "0.06em" }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5 backdrop-blur-sm"
+            style={{
+              background: "linear-gradient(135deg, rgba(0, 25, 218, 0.08) 0%, rgba(99, 60, 255, 0.08) 100%)",
+              border: "1px solid rgba(0, 25, 218, 0.12)",
+              boxShadow: "0 2px 8px rgba(0, 25, 218, 0.06)",
+              fontSize: "12px",
+              fontWeight: 700,
+              letterSpacing: "0.06em",
+              color: "#0019DA",
+            }}
           >
-            {t.badge}
+            <BadgeDollarSign size={13} />
+            <ShinyText text={t.badge} color="#0019DA" shineColor="#93C5FD" speed={2} spread={90} />
           </span>
-          <h2 style={{ fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 700, lineHeight: 1.2, color: "#0A0A1A" }}>
+          <h2 style={{ fontSize: "clamp(22px, 3.5vw, 42px)", fontWeight: 700, lineHeight: 1.2, color: "#0A0A1A", textTransform: "uppercase", letterSpacing: "-0.02em", whiteSpace: "pre-line" }}>
             {t.title}
           </h2>
           <p className="mt-4 mx-auto max-w-[520px] text-gray-500" style={{ fontSize: "16px", lineHeight: 1.7 }}>
@@ -42,7 +53,7 @@ export function Pricing() {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-[1200px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 max-w-[960px] mx-auto">
           {t.plans.map((plan) => (
             <PlanCard key={plan.name} plan={plan} />
           ))}
@@ -57,18 +68,18 @@ function PlanCard({ plan }: { plan: PricingPlan }) {
 
   return (
     <div
-      className="relative rounded-2xl p-8 flex flex-col transition-all duration-300 hover:-translate-y-1"
+      className={`relative rounded-xl p-5 sm:p-6 flex flex-col transition-transform duration-300 hover:-translate-y-1.5 cursor-default${plan.popular ? " animate-pulse-subtle" : ""}`}
       style={{
         backgroundColor: plan.popular ? "#0019DA" : "#FFFFFF",
         border: plan.popular ? "none" : "1px solid #E8E8F0",
         boxShadow: plan.popular
-          ? "0 20px 60px rgba(0, 25, 218, 0.25)"
+          ? undefined
           : "0 4px 20px rgba(0, 0, 0, 0.04)",
       }}
     >
       {plan.popular && plan.popularLabel && (
         <div
-          className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full"
+          className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full whitespace-nowrap"
           style={{
             backgroundColor: "#FFD700",
             fontSize: "11px",
@@ -77,83 +88,98 @@ function PlanCard({ plan }: { plan: PricingPlan }) {
             color: "#0A0A1A",
           }}
         >
-          {plan.popularLabel}
+          🔥 {plan.popularLabel}
         </div>
       )}
 
       <div
-        className="w-11 h-11 rounded-xl flex items-center justify-center mb-6"
+        className="w-9 h-9 rounded-lg flex items-center justify-center mb-5"
         style={{ backgroundColor: plan.popular ? "rgba(255,255,255,0.15)" : "#EEF0FF" }}
       >
-        <PlanIcon size={20} style={{ color: plan.popular ? "#FFFFFF" : "#0019DA" }} />
+        <PlanIcon size={17} style={{ color: plan.popular ? "#FFFFFF" : "#0019DA" }} />
       </div>
 
       <h3
+        className="text-[16px] sm:text-[18px]"
         style={{
-          fontSize: "22px",
           fontWeight: 700,
           color: plan.popular ? "#FFFFFF" : "#0A0A1A",
-          marginBottom: "4px",
+          marginBottom: "3px",
         }}
       >
         {plan.name}
       </h3>
       <p
         style={{
-          fontSize: "13px",
+          fontSize: "12px",
           color: plan.popular ? "rgba(255,255,255,0.7)" : "#888",
-          marginBottom: "24px",
+          marginBottom: "20px",
         }}
       >
         {plan.description}
       </p>
 
-      <div className="mb-6">
+      <div className="mb-5">
         {plan.price ? (
-          <div className="flex items-baseline gap-1">
-            <span
-              style={{
-                fontSize: "42px",
-                fontWeight: 800,
-                color: plan.popular ? "#FFFFFF" : "#0A0A1A",
-                lineHeight: 1,
-              }}
-            >
-              {plan.price}
-            </span>
-            <span
-              style={{
-                fontSize: "15px",
-                color: plan.popular ? "rgba(255,255,255,0.6)" : "#999",
-                fontWeight: 500,
-              }}
-            >
-              {plan.period}
-            </span>
+          <div>
+            <div className="flex items-baseline gap-1">
+              <span
+                className="text-[28px] sm:text-[34px]"
+                style={{
+                  fontWeight: 800,
+                  color: plan.popular ? "#FFFFFF" : "#0A0A1A",
+                  lineHeight: 1,
+                }}
+              >
+                {plan.arsPrice ?? plan.price}
+              </span>
+              <span
+                style={{
+                  fontSize: "13px",
+                  color: plan.popular ? "rgba(255,255,255,0.6)" : "#999",
+                  fontWeight: 500,
+                }}
+              >
+                {plan.period}
+              </span>
+            </div>
+            {plan.arsPrice && (
+              <span
+                style={{
+                  fontSize: "12px",
+                  fontWeight: 500,
+                  color: plan.popular ? "rgba(255,255,255,0.5)" : "#999",
+                  marginTop: "4px",
+                  display: "block",
+                }}
+              >
+                ({plan.price}{plan.period})
+              </span>
+            )}
           </div>
         ) : (
-          <span style={{ fontSize: "20px", fontWeight: 700, color: "#0A0A1A" }}>
+          <span style={{ fontSize: "18px", fontWeight: 700, color: "#0A0A1A" }}>
             {plan.customPriceLabel}
           </span>
         )}
       </div>
 
-      <div className="h-px w-full mb-6" style={{ backgroundColor: plan.popular ? "rgba(255,255,255,0.15)" : "#E8E8F0" }} />
+      <div className="h-px w-full mb-5" style={{ backgroundColor: plan.popular ? "rgba(255,255,255,0.15)" : "#E8E8F0" }} />
 
-      <ul className="flex flex-col gap-4 mb-8 flex-1">
+      <ul className="flex flex-col gap-3 mb-6 flex-1">
         {plan.features.map((feature) => {
           const FeatureIcon = featureIconMap[feature.iconName] || Check
           return (
-            <li key={feature.text} className="flex items-center gap-3">
+            <li key={feature.text} className="flex items-center gap-2.5">
               <div
-                className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0"
                 style={{ backgroundColor: plan.popular ? "rgba(255,255,255,0.12)" : "#F3F4FF" }}
               >
-                <FeatureIcon size={14} style={{ color: plan.popular ? "#FFFFFF" : "#0019DA" }} />
+                <FeatureIcon size={12} style={{ color: plan.popular ? "#FFFFFF" : "#0019DA" }} />
               </div>
               <span
+                className="text-[11.5px] sm:text-[12px]"
                 style={{
-                  fontSize: "14px",
                   fontWeight: 500,
                   color: plan.popular ? "rgba(255,255,255,0.9)" : "#555",
                 }}
@@ -167,11 +193,11 @@ function PlanCard({ plan }: { plan: PricingPlan }) {
 
       <a
         href={plan.price ? appLink("/creator/register") : appLink("/companies/new")}
-        className="w-full py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer hover:opacity-90"
+        className="w-full py-3 rounded-lg flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer hover:opacity-90"
         style={{
           backgroundColor: plan.popular ? "#FFFFFF" : plan.price ? "#0019DA" : "transparent",
           color: plan.popular ? "#0019DA" : plan.price ? "#FFFFFF" : "#0019DA",
-          fontSize: "14px",
+          fontSize: "13px",
           fontWeight: 600,
           border: !plan.price ? "2px solid #0019DA" : "none",
         }}

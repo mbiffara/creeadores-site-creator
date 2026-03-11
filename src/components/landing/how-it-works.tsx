@@ -12,7 +12,7 @@ export function HowItWorks() {
   const t = dictionary.home.howItWorks
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-16 sm:py-24 relative overflow-hidden">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -21,9 +21,9 @@ export function HowItWorks() {
         }}
       />
 
-      <div className="max-w-[1440px] mx-auto px-8 lg:px-16 relative z-10">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-16 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16 lg:mb-20">
+        <div className="text-center mb-10 sm:mb-16 lg:mb-20">
           <div
             className="inline-block px-5 py-2 rounded-full mb-6"
             style={{
@@ -38,7 +38,7 @@ export function HowItWorks() {
           </div>
           <h2
             className="text-gray-900 mb-4"
-            style={{ fontSize: "clamp(28px, 3.5vw, 42px)", fontWeight: 700, lineHeight: 1.15 }}
+            style={{ fontSize: "clamp(22px, 3.5vw, 42px)", fontWeight: 700, lineHeight: 1.15 }}
           >
             {t.title}
           </h2>
@@ -186,7 +186,7 @@ export function HowItWorks() {
             return (
               <div
                 key={step.number}
-                className="rounded-2xl p-6 relative overflow-hidden"
+                className="rounded-2xl p-5 sm:p-6 relative overflow-hidden"
                 style={{
                   background: "linear-gradient(135deg, rgba(0, 25, 218, 0.04) 0%, rgba(59, 91, 255, 0.02) 100%)",
                   border: "1px solid rgba(0, 25, 218, 0.08)",
@@ -223,12 +223,12 @@ export function HowItWorks() {
                       >
                         {t.stepLabel} {step.number}
                       </span>
-                      <h3 className="text-gray-900" style={{ fontSize: "18px", fontWeight: 700 }}>
+                      <h3 className="text-gray-900 text-[16px] sm:text-[18px]" style={{ fontWeight: 700 }}>
                         {step.title}
                       </h3>
                     </div>
                   </div>
-                  <p className="text-gray-500" style={{ fontSize: "14px", lineHeight: 1.7 }}>
+                  <p className="text-gray-500 text-[13px] sm:text-[14px]" style={{ lineHeight: 1.7 }}>
                     {step.description}
                   </p>
                 </div>

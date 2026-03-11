@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Logo } from "@/components/logo"
 import { TikTokIcon } from "@/components/ui/tiktok-icon"
 import { useLanguage } from "@/components/language-provider"
+import { appLink } from "@/lib/links"
 
 const socials = [
   { icon: Instagram, href: "#", label: "Instagram" },
@@ -19,18 +20,36 @@ export function LandingFooter() {
   const t = dictionary.home.landingFooter
 
   return (
-    <footer className="bg-[#0019DA] text-white pt-16 pb-8">
-      <div className="max-w-[1440px] mx-auto px-8 lg:px-16">
+    <footer className="bg-[#0019DA] text-white pt-8 pb-6 sm:pt-10 sm:pb-8">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-16">
         {/* Main footer content */}
-        <div className="flex flex-col items-center gap-10 mb-12 text-center">
+        <div className="flex flex-col items-center gap-5 mb-6 text-center">
           {/* Logo + description */}
-          <div className="max-w-[420px]">
+          <div className="max-w-[540px]">
             <div className="mb-4 flex justify-center">
               <Logo href="/" variant="white" className="h-5" />
             </div>
-            <p className="text-white/60" style={{ fontSize: "14px", lineHeight: 1.7 }}>
+            <p className="text-white/60 text-[11px] sm:text-[12px]" style={{ lineHeight: 1.7 }}>
               {t.description}
             </p>
+          </div>
+
+          {/* Nav links */}
+          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
+            {dictionary.home.nav.links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href.startsWith("#") ? link.href : appLink(link.href)}
+                className="group relative text-white/60 hover:text-white transition-colors pb-1 text-[12px] sm:text-[13px]"
+                style={{ fontWeight: 500 }}
+              >
+                {link.label}
+                <span
+                  className="absolute bottom-0 left-1/2 h-[2px] w-0 group-hover:w-full group-hover:left-0 transition-all duration-300 rounded-full"
+                  style={{ background: "linear-gradient(90deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4))" }}
+                />
+              </a>
+            ))}
           </div>
 
           {/* Social icons */}
@@ -42,8 +61,10 @@ export function LandingFooter() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 hover:bg-white/20"
-                  style={{ backgroundColor: "rgba(255,255,255,0.08)" }}
+                  className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-105"
+                  style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid transparent" }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.5)" }}
+                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = "transparent" }}
                 >
                   <Icon className="w-4 h-4" />
                 </Link>
@@ -57,7 +78,7 @@ export function LandingFooter() {
 
         {/* Bottom bar */}
         <div className="flex flex-col items-center gap-4 text-center">
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center gap-6">
             {t.legal.map((item, i) => (
               <Link
                 key={item}

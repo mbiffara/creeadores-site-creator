@@ -7,54 +7,55 @@ import { useLanguage } from "@/components/language-provider"
 import { appLink } from "@/lib/links"
 import { CreatorCard } from "@/components/landing/creator-card"
 import { VerticalMarquee } from "@/components/landing/vertical-marquee"
-import { HowItWorks } from "@/components/landing/how-it-works"
-import { LandingFeatures } from "@/components/landing/landing-features"
+import { CampaignTypes } from "@/components/landing/campaign-types"
+import { CampaignFeatures } from "@/components/landing/campaign-features"
 import { Pricing } from "@/components/landing/pricing"
 import { LandingFooter } from "@/components/landing/landing-footer"
+import RotatingText from "@/components/ui/rotating-text"
 
 const col1 = [
-  { name: "Valentina Rojas", category: "Lifestyle", followers: "345k", rating: 4, badge: "bronce" as const, image: "https://images.unsplash.com/photo-1642368523880-3824bb4b16f8?w=400&h=500&fit=crop&crop=face" },
-  { name: "Carlos Mendez", category: "Tech", followers: "120k", rating: 3, badge: "bronce" as const, image: "https://images.unsplash.com/photo-1639422633786-bae289799873?w=400&h=500&fit=crop&crop=face" },
-  { name: "Camila Torres", category: "Skincare", followers: "510k", rating: 5, badge: "oro" as const, image: "https://images.unsplash.com/photo-1672794776762-18dddc72982e?w=400&h=500&fit=crop&crop=face" },
-  { name: "Ricardo Peña", category: "Musica", followers: "210k", rating: 4, badge: "plata" as const, image: "https://images.unsplash.com/photo-1542357411977-726a8931ee8b?w=400&h=500&fit=crop&crop=face" },
-  { name: "Lucia Fernandez", category: "Beauty", followers: "478k", rating: 5, badge: "oro" as const, image: "https://images.unsplash.com/photo-1619095383688-b9fd80f2b916?w=400&h=500&fit=crop&crop=face" },
-  { name: "Sebastian Diaz", category: "Fitness", followers: "167k", rating: 3, badge: "bronce" as const, image: "https://images.unsplash.com/photo-1723145600790-60d58244c829?w=400&h=500&fit=crop&crop=face" },
+  { name: "Valentina Rojas", category: "Buenos Aires, ARG", followers: "12k", rating: 4, badge: "bronce" as const, price: "25.000", image: "https://images.unsplash.com/photo-1642368523880-3824bb4b16f8?w=400&h=500&fit=crop&crop=face" },
+  { name: "Carlos Mendez", category: "Córdoba, ARG", followers: "5.2k", rating: 3, badge: "bronce" as const, price: "18.500", image: "https://images.unsplash.com/photo-1639422633786-bae289799873?w=400&h=500&fit=crop&crop=face" },
+  { name: "Camila Torres", category: "CDMX, MX", followers: "23k", rating: 5, badge: "oro" as const, price: "45.000", image: "https://images.unsplash.com/photo-1672794776762-18dddc72982e?w=400&h=500&fit=crop&crop=face" },
+  { name: "Ricardo Peña", category: "Rosario, ARG", followers: "8.7k", rating: 4, badge: "plata" as const, price: "22.000", image: "https://images.unsplash.com/photo-1542357411977-726a8931ee8b?w=400&h=500&fit=crop&crop=face" },
+  { name: "Lucia Fernandez", category: "Mendoza, ARG", followers: "18k", rating: 5, badge: "oro" as const, price: "38.000", image: "https://images.unsplash.com/photo-1619095383688-b9fd80f2b916?w=400&h=500&fit=crop&crop=face" },
+  { name: "Sebastian Diaz", category: "Santiago, CL", followers: "3.4k", rating: 3, badge: "bronce" as const, price: "16.500", image: "https://images.unsplash.com/photo-1723145600790-60d58244c829?w=400&h=500&fit=crop&crop=face" },
 ]
 
 const col2 = [
-  { name: "Sofia Martinez", category: "Beauty", followers: "890k", rating: 5, badge: "oro" as const, image: "https://images.unsplash.com/photo-1749318104909-ee768bac4d7e?w=400&h=500&fit=crop&crop=face" },
-  { name: "Mateo Rivera", category: "Gaming", followers: "134k", rating: 4, badge: "bronce" as const, image: "https://images.unsplash.com/photo-1759415491301-3cd2da948c17?w=400&h=500&fit=crop&crop=face" },
-  { name: "Diego Salazar", category: "Musica", followers: "320k", rating: 4, badge: "plata" as const, image: "https://images.unsplash.com/photo-1633469926055-b1503bfa541d?w=400&h=500&fit=crop&crop=face" },
-  { name: "Mariana Castillo", category: "Moda", followers: "533k", rating: 5, badge: "oro" as const, image: "https://images.unsplash.com/photo-1694847035685-6c28c1cf19d0?w=400&h=500&fit=crop&crop=face" },
-  { name: "Tomas Gutierrez", category: "Travel", followers: "89k", rating: 3, badge: "bronce" as const, image: "https://images.unsplash.com/photo-1760716054699-ef7d33a36660?w=400&h=500&fit=crop&crop=face" },
-  { name: "Gabriela Rios", category: "Cocina", followers: "412k", rating: 4, badge: "plata" as const, image: "https://images.unsplash.com/photo-1568236645308-b332c0acb6db?w=400&h=500&fit=crop&crop=face" },
+  { name: "Sofia Martinez", category: "Buenos Aires, ARG", followers: "31k", rating: 5, badge: "oro" as const, price: "62.000", image: "https://images.unsplash.com/photo-1749318104909-ee768bac4d7e?w=400&h=500&fit=crop&crop=face" },
+  { name: "Mateo Rivera", category: "Caracas, VE", followers: "6.1k", rating: 4, badge: "bronce" as const, price: "19.000", image: "https://images.unsplash.com/photo-1759415491301-3cd2da948c17?w=400&h=500&fit=crop&crop=face" },
+  { name: "Diego Salazar", category: "Tucumán, ARG", followers: "14k", rating: 4, badge: "plata" as const, price: "28.000", image: "https://images.unsplash.com/photo-1633469926055-b1503bfa541d?w=400&h=500&fit=crop&crop=face" },
+  { name: "Mariana Castillo", category: "Mar del Plata, ARG", followers: "21k", rating: 5, badge: "oro" as const, price: "48.000", image: "https://images.unsplash.com/photo-1694847035685-6c28c1cf19d0?w=400&h=500&fit=crop&crop=face" },
+  { name: "Tomas Gutierrez", category: "Monterrey, MX", followers: "2.8k", rating: 3, badge: "bronce" as const, price: "15.500", image: "https://images.unsplash.com/photo-1760716054699-ef7d33a36660?w=400&h=500&fit=crop&crop=face" },
+  { name: "Gabriela Rios", category: "La Plata, ARG", followers: "15k", rating: 4, badge: "plata" as const, price: "32.000", image: "https://images.unsplash.com/photo-1568236645308-b332c0acb6db?w=400&h=500&fit=crop&crop=face" },
 ]
 
 const col3 = [
-  { name: "Ana Garcia", category: "Moda", followers: "456k", rating: 5, badge: "plata" as const, image: "https://images.unsplash.com/photo-1695051153795-2c819e6fffc9?w=400&h=500&fit=crop&crop=face" },
-  { name: "Marco Alvarez", category: "Travel", followers: "430k", rating: 4, badge: "bronce" as const, image: "https://images.unsplash.com/photo-1719390223407-95e0ad542385?w=400&h=500&fit=crop&crop=face" },
-  { name: "Isabella Lopez", category: "Arte", followers: "178k", rating: 3, badge: "bronce" as const, image: "https://images.unsplash.com/photo-1740510294234-f1710f12f372?w=400&h=500&fit=crop&crop=face" },
-  { name: "Nicolas Varela", category: "Tech", followers: "256k", rating: 4, badge: "plata" as const, image: "https://images.unsplash.com/photo-1639422633773-041d9fa609af?w=400&h=500&fit=crop&crop=face" },
-  { name: "Catalina Mora", category: "Lifestyle", followers: "621k", rating: 5, badge: "oro" as const, image: "https://images.unsplash.com/photo-1742276720784-c5b018cf0d38?w=400&h=500&fit=crop&crop=face" },
-  { name: "Emilio Suarez", category: "Deporte", followers: "143k", rating: 3, badge: "bronce" as const, image: "https://images.unsplash.com/photo-1649440100794-0776df1177b0?w=400&h=500&fit=crop&crop=face" },
+  { name: "Ana Garcia", category: "Salta, ARG", followers: "19k", rating: 5, badge: "plata" as const, price: "35.000", image: "https://images.unsplash.com/photo-1695051153795-2c819e6fffc9?w=400&h=500&fit=crop&crop=face" },
+  { name: "Marco Alvarez", category: "Guadalajara, MX", followers: "11k", rating: 4, badge: "bronce" as const, price: "30.000", image: "https://images.unsplash.com/photo-1719390223407-95e0ad542385?w=400&h=500&fit=crop&crop=face" },
+  { name: "Isabella Lopez", category: "Buenos Aires, ARG", followers: "4.3k", rating: 3, badge: "bronce" as const, price: "17.000", image: "https://images.unsplash.com/photo-1740510294234-f1710f12f372?w=400&h=500&fit=crop&crop=face" },
+  { name: "Nicolas Varela", category: "Córdoba, ARG", followers: "9.5k", rating: 4, badge: "plata" as const, price: "26.000", image: "https://images.unsplash.com/photo-1639422633773-041d9fa609af?w=400&h=500&fit=crop&crop=face" },
+  { name: "Catalina Mora", category: "Maracaibo, VE", followers: "27k", rating: 5, badge: "oro" as const, price: "52.000", image: "https://images.unsplash.com/photo-1742276720784-c5b018cf0d38?w=400&h=500&fit=crop&crop=face" },
+  { name: "Emilio Suarez", category: "Neuquén, ARG", followers: "3.1k", rating: 3, badge: "bronce" as const, price: "15.800", image: "https://images.unsplash.com/photo-1649440100794-0776df1177b0?w=400&h=500&fit=crop&crop=face" },
 ]
 
 const col4 = [
-  { name: "Laura Herrera", category: "Fitness", followers: "267k", rating: 3, badge: "plata" as const, image: "https://images.unsplash.com/photo-1669502299593-5dbb23edfdb4?w=400&h=500&fit=crop&crop=face" },
-  { name: "Mateo Ruiz", category: "Cocina", followers: "198k", rating: 4, badge: "bronce" as const, image: "https://images.unsplash.com/photo-1717700921740-a1440f3b89a4?w=400&h=500&fit=crop&crop=face" },
-  { name: "Andres Moreno", category: "Deporte", followers: "245k", rating: 5, badge: "oro" as const, image: "https://images.unsplash.com/photo-1602339824025-b1b13c64ce56?w=400&h=500&fit=crop&crop=face" },
-  { name: "Daniela Ortiz", category: "Skincare", followers: "372k", rating: 4, badge: "plata" as const, image: "https://images.unsplash.com/photo-1756418940569-fce82e2223f3?w=400&h=500&fit=crop&crop=face" },
-  { name: "Felipe Castro", category: "Gaming", followers: "109k", rating: 3, badge: "bronce" as const, image: "https://images.unsplash.com/photo-1571764304303-978699b70f5a?w=400&h=500&fit=crop&crop=face" },
-  { name: "Renata Silva", category: "Arte", followers: "548k", rating: 5, badge: "oro" as const, image: "https://images.unsplash.com/photo-1624461213536-cd6b021ab6b6?w=400&h=500&fit=crop&crop=face" },
+  { name: "Laura Herrera", category: "Buenos Aires, ARG", followers: "10k", rating: 3, badge: "plata" as const, price: "24.000", image: "https://images.unsplash.com/photo-1669502299593-5dbb23edfdb4?w=400&h=500&fit=crop&crop=face" },
+  { name: "Mateo Ruiz", category: "Rosario, ARG", followers: "7.2k", rating: 4, badge: "bronce" as const, price: "20.000", image: "https://images.unsplash.com/photo-1717700921740-a1440f3b89a4?w=400&h=500&fit=crop&crop=face" },
+  { name: "Andres Moreno", category: "Valparaíso, CL", followers: "9.1k", rating: 5, badge: "oro" as const, price: "27.500", image: "https://images.unsplash.com/photo-1602339824025-b1b13c64ce56?w=400&h=500&fit=crop&crop=face" },
+  { name: "Daniela Ortiz", category: "Mendoza, ARG", followers: "16k", rating: 4, badge: "plata" as const, price: "33.000", image: "https://images.unsplash.com/photo-1756418940569-fce82e2223f3?w=400&h=500&fit=crop&crop=face" },
+  { name: "Felipe Castro", category: "CDMX, MX", followers: "4.8k", rating: 3, badge: "bronce" as const, price: "16.000", image: "https://images.unsplash.com/photo-1571764304303-978699b70f5a?w=400&h=500&fit=crop&crop=face" },
+  { name: "Renata Silva", category: "Córdoba, ARG", followers: "22k", rating: 5, badge: "oro" as const, price: "42.000", image: "https://images.unsplash.com/photo-1624461213536-cd6b021ab6b6?w=400&h=500&fit=crop&crop=face" },
 ]
 
 const col5 = [
-  { name: "Fernanda Cruz", category: "Viajes", followers: "389k", rating: 4, badge: "plata" as const, image: "https://images.unsplash.com/photo-1606525380696-c2bfe72f7b8d?w=400&h=500&fit=crop&crop=face" },
-  { name: "Javier Romero", category: "Finanzas", followers: "95k", rating: 3, badge: "bronce" as const, image: "https://images.unsplash.com/photo-1742569184536-77ff9ae46c99?w=400&h=500&fit=crop&crop=face" },
-  { name: "Paula Vargas", category: "Moda", followers: "612k", rating: 5, badge: "oro" as const, image: "https://images.unsplash.com/photo-1760200793219-041974d3543f?w=400&h=500&fit=crop&crop=face" },
-  { name: "Julian Reyes", category: "Musica", followers: "287k", rating: 4, badge: "plata" as const, image: "https://images.unsplash.com/photo-1642753514608-2c5755c02a35?w=400&h=500&fit=crop&crop=face" },
-  { name: "Camila Navarro", category: "Beauty", followers: "445k", rating: 5, badge: "oro" as const, image: "https://images.unsplash.com/photo-1740541605698-dceefcda82a0?w=400&h=500&fit=crop&crop=face" },
-  { name: "Santiago Mejia", category: "Tech", followers: "176k", rating: 3, badge: "bronce" as const, image: "https://images.unsplash.com/photo-1620421595492-c9974ff8e2c2?w=400&h=500&fit=crop&crop=face" },
+  { name: "Fernanda Cruz", category: "Buenos Aires, ARG", followers: "13k", rating: 4, badge: "plata" as const, price: "29.000", image: "https://images.unsplash.com/photo-1606525380696-c2bfe72f7b8d?w=400&h=500&fit=crop&crop=face" },
+  { name: "Javier Romero", category: "Tucumán, ARG", followers: "2.5k", rating: 3, badge: "bronce" as const, price: "15.200", image: "https://images.unsplash.com/photo-1742569184536-77ff9ae46c99?w=400&h=500&fit=crop&crop=face" },
+  { name: "Paula Vargas", category: "Caracas, VE", followers: "25k", rating: 5, badge: "oro" as const, price: "55.000", image: "https://images.unsplash.com/photo-1760200793219-041974d3543f?w=400&h=500&fit=crop&crop=face" },
+  { name: "Julian Reyes", category: "La Plata, ARG", followers: "8.3k", rating: 4, badge: "plata" as const, price: "23.500", image: "https://images.unsplash.com/photo-1642753514608-2c5755c02a35?w=400&h=500&fit=crop&crop=face" },
+  { name: "Camila Navarro", category: "Santiago, CL", followers: "17k", rating: 5, badge: "oro" as const, price: "37.000", image: "https://images.unsplash.com/photo-1740541605698-dceefcda82a0?w=400&h=500&fit=crop&crop=face" },
+  { name: "Santiago Mejia", category: "Buenos Aires, ARG", followers: "5.6k", rating: 3, badge: "bronce" as const, price: "18.000", image: "https://images.unsplash.com/photo-1620421595492-c9974ff8e2c2?w=400&h=500&fit=crop&crop=face" },
 ]
 
 const columns = [
@@ -81,19 +82,22 @@ function LandingHeader() {
 
   return (
     <header className="sticky top-0 z-50 bg-white/60 backdrop-blur-lg" style={{ boxShadow: "0 2px 20px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04)" }}>
-      <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 sm:px-8 lg:px-16 py-4">
-        <Logo href="/" variant="blue" className="h-5 flex-shrink-0" />
+      <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 sm:px-8 lg:px-16 py-[22px] relative">
+        <Logo href="/" variant="blue" className="h-[22px] flex-shrink-0" />
 
-        <div className="hidden md:flex items-center gap-8">
-          {nav.links.map((item) => (
+        <div className="hidden min-[1180px]:flex items-center gap-6">
+          {nav.links.map((link) => (
             <a
-              key={item}
-              href="#"
+              key={link.href}
+              href={link.href.startsWith("#") ? link.href : appLink(link.href)}
               className="group relative text-gray-600 hover:text-[#0019DA] transition-colors pb-1"
               style={{ fontSize: "14px", fontWeight: 500 }}
             >
-              {item}
-              <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#0019DA] transition-all duration-300 group-hover:w-full" />
+              {link.label}
+              <span
+                className="absolute bottom-0 left-1/2 h-[2px] w-0 group-hover:w-full group-hover:left-0 transition-all duration-300 rounded-full"
+                style={{ background: "linear-gradient(90deg, #0019DA, #633CFF)" }}
+              />
             </a>
           ))}
         </div>
@@ -111,8 +115,8 @@ function LandingHeader() {
           <div ref={ref} className="relative">
             <button
               onClick={() => setOpen((v) => !v)}
-              className="bg-[#0019DA] text-white px-6 py-2.5 rounded-full hover:bg-[#0014B0] transition-colors cursor-pointer flex items-center gap-2"
-              style={{ fontSize: "14px", fontWeight: 600 }}
+              className="bg-[#0019DA] text-white px-3.5 py-1.5 sm:px-5 sm:py-2 rounded-full hover:bg-[#0014B0] transition-colors cursor-pointer flex items-center gap-1.5"
+              style={{ fontSize: "12px", fontWeight: 600 }}
             >
               {nav.startFree}
               <ChevronDown
@@ -180,12 +184,12 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden" style={{ marginTop: "-72px", paddingTop: "72px" }}>
         {/* Subtle dot texture */}
-        <div className="absolute inset-0 pointer-events-none z-0" style={{ backgroundImage: "radial-gradient(circle, rgba(0, 25, 218, 0.17) 1.2px, transparent 1.2px)", backgroundSize: "16px 16px" }} />
+        <div className="absolute inset-0 pointer-events-none z-0" style={{ backgroundImage: "radial-gradient(circle, rgba(0, 25, 218, 0.07) 1.2px, transparent 1.2px)", backgroundSize: "16px 16px" }} />
         {/* Desktop - Right Vertical Marquee Columns */}
-        <div className="hidden min-[1015px]:flex gap-5 absolute top-0 bottom-0" style={{ left: "48%", right: 0 }}>
+        <div className="hidden lg:flex gap-5 absolute top-0 bottom-0" style={{ left: "48%", right: 0 }}>
           <div className="absolute inset-0 -z-1 rounded-l-[3rem]" style={{ background: "linear-gradient(135deg, rgba(0, 25, 218, 0.18) 0%, rgba(152, 16, 250, 0.14) 50%, rgba(230, 0, 118, 0.10) 100%)" }} />
-          <div className="absolute top-0 left-0 right-0 h-20 pointer-events-none z-10" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%)" }} />
-          <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none z-10" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)" }} />
+          <div className="absolute left-0 right-0 h-28 pointer-events-none z-10" style={{ top: "72px", background: "linear-gradient(to bottom, rgba(255,255,255,0.25) 0%, transparent 100%)" }} />
+          <div className="absolute bottom-0 left-0 right-0 h-28 pointer-events-none z-10" style={{ background: "linear-gradient(to top, rgba(255,255,255,0.25) 0%, transparent 100%)" }} />
 
           {columns.map((col, i) => (
             <div key={i} className="flex-1 h-full">
@@ -198,41 +202,37 @@ export default function HomePage() {
           ))}
         </div>
 
-        {/* Mobile - Horizontal Marquee rows on top */}
-        <div className="min-[1015px]:hidden relative overflow-hidden bg-[#0A0A1A] rounded-b-3xl" style={{ height: "340px" }}>
-          <div className="absolute inset-0 flex flex-col gap-4 justify-center py-4">
-            {[col1, col2, col3].map((col, i) => (
-              <div key={i} className="overflow-hidden">
-                <div
-                  className="flex gap-4"
-                  style={{
-                    animation: `marquee-horizontal ${35 + i * 5}s linear infinite`,
-                    animationDirection: i % 2 !== 0 ? "reverse" : "normal",
-                    width: "max-content",
-                  }}
-                >
-                  {[...col, ...col].map((creator, j) => (
-                    <div key={`${creator.name}-${j}`} className="flex-shrink-0" style={{ width: "150px" }}>
-                      <CreatorCard {...creator} />
-                    </div>
-                  ))}
+        {/* Mobile - Single horizontal marquee row */}
+        <div className="lg:hidden relative overflow-hidden pt-6 md:pt-8 pb-2">
+          <div className="overflow-hidden">
+            <div
+              className="flex gap-4"
+              style={{
+                animation: "marquee-horizontal 35s linear infinite",
+                width: "max-content",
+              }}
+            >
+              {[...col1, ...col1].map((creator, j) => (
+                <div key={`${creator.name}-${j}`} className="flex-shrink-0 w-[160px] sm:w-[180px] md:w-[200px]">
+                  <CreatorCard {...creator} />
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-          {/* Side fades */}
-          <div className="absolute top-0 bottom-0 left-0 w-16 pointer-events-none z-10" style={{ background: "linear-gradient(to right, #0A0A1A, transparent)" }} />
-          <div className="absolute top-0 bottom-0 right-0 w-16 pointer-events-none z-10" style={{ background: "linear-gradient(to left, #0A0A1A, transparent)" }} />
+          {/* Fades */}
+          <div className="absolute top-0 left-0 right-0 h-10 pointer-events-none z-10" style={{ background: "linear-gradient(to bottom, white, transparent)" }} />
+          <div className="absolute top-0 bottom-0 left-0 w-12 pointer-events-none z-10" style={{ background: "linear-gradient(to right, white, transparent)" }} />
+          <div className="absolute top-0 bottom-0 right-0 w-12 pointer-events-none z-10" style={{ background: "linear-gradient(to left, white, transparent)" }} />
         </div>
 
         {/* Hero text content */}
-        <div className="min-[1015px]:min-h-[calc(98vh-72px)] max-w-7xl mx-auto px-6 sm:px-8 min-[1015px]:px-16 relative z-20 flex items-center">
-          <div className="w-full min-[1015px]:w-[42%] py-10 min-[1015px]:py-0 text-center min-[1015px]:text-left flex flex-col items-center min-[1015px]:items-start">
+        <div className="min-h-[calc(50vh-12px)] md:min-h-[calc(70vh-12px)] lg:min-h-[calc(90vh-12px)] max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 relative z-20 flex items-center">
+          <div className="w-full lg:w-[42%] pb-12 sm:pb-20 lg:py-0 text-left flex flex-col items-start">
             <div
-              className="inline-flex items-center gap-3 px-5 py-1.5 rounded-full mb-5 backdrop-blur-lg"
-              style={{ backgroundColor: "rgba(255, 255, 255, 0.6)", border: "1px solid rgba(0, 25, 218, 0.1)", boxShadow: "0 2px 20px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04)" }}
+              className="inline-flex items-center gap-2 sm:gap-3 px-3 py-1 sm:px-5 sm:py-1.5 rounded-full mb-5 backdrop-blur-lg"
+              style={{ backgroundColor: "rgba(255, 255, 255, 0.6)", border: "1px solid rgba(0, 25, 218, 0.25)", boxShadow: "0 2px 20px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04)" }}
             >
-              <span className="flex items-center gap-1.5 uppercase" style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.06em", color: "#030870" }}>
+              <span className="flex items-center gap-1.5 uppercase text-[10px] sm:text-[11px]" style={{ fontWeight: 700, letterSpacing: "0.06em", color: "#030870" }}>
                 <Handshake size={14} />
                 {hero.badge}
               </span>
@@ -273,32 +273,39 @@ export default function HomePage() {
             </div>
 
             <h1
-              className="text-[#0019DA] mb-5"
-              style={{ fontSize: "clamp(36px, 4.5vw, 56px)", fontWeight: 600, lineHeight: 1.05, letterSpacing: "-0.02em" }}
+              className="text-[#0019DA] mb-3 sm:mb-5 drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)]"
+              style={{ fontSize: "clamp(34px, 5vw, 44px)", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.02em" }}
             >
               <span style={{ letterSpacing: "-0.05em" }}>{hero.line1}<br />
-              {hero.line2}</span> <span style={{ fontWeight: 800, background: "linear-gradient(90deg, #0019DA 0%, #2201B2 40%, #ED4B00 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>{hero.line3}{hero.line3Bold}.</span>
+              {hero.line2}</span>{" "}<RotatingText
+                texts={hero.rotatingWords}
+                rotationInterval={3500}
+                transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                textStyle={{ fontWeight: 800, background: "linear-gradient(90deg, #0019DA 0%, #2201B2 35%, #ED4B00 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" } as React.CSSProperties}
+              >
+                <svg className="inline align-baseline ml-1" style={{ height: "0.28em", width: "auto" }} viewBox="0 0 54 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M53.4307 13.373V15.6679C53.4015 15.8136 53.3724 15.9666 53.336 16.1123C53.0081 17.4237 52.8405 18.8006 52.3087 20.0246C50.0794 25.168 46.1526 28.1914 40.572 28.92C39.1514 29.1021 37.6944 28.9928 36.2519 28.9928C29.1705 28.9928 22.0964 29.0001 15.0151 28.9928C14.0461 28.9928 13.0553 28.9782 12.1082 28.7888C6.46938 27.696 2.6373 24.4395 0.735827 19.0119C0.364274 17.9482 0.233131 16.7899 0 15.6752C0 14.9103 0 14.1453 0 13.3803C0.0291414 13.2346 0.072857 13.0816 0.094713 12.9359C0.706682 8.13489 3.10351 4.49221 7.24159 2.00791C9.59475 0.594552 12.1884 0.0481555 14.9204 0.0481555C22.2786 0.0554408 29.6367 0.0481555 36.9949 0.0481555C37.2936 0.0481555 37.5851 0.0408655 37.8838 0.0262948C44.7174 -0.367114 50.6768 3.68354 52.7677 10.1894C53.0955 11.2166 53.2267 12.3167 53.4453 13.3803L53.4307 13.373ZM29.4692 14.5023C29.4255 19.6384 33.6364 23.8931 38.8162 23.9441C44.018 23.9951 48.2872 19.806 48.3236 14.6188C48.3674 9.42439 44.2147 5.16246 39.064 5.10418C33.7603 5.0459 29.5202 9.20583 29.4692 14.5023Z" fill="#ED4B00"/></svg>
+              </RotatingText>
             </h1>
 
-            <p className="text-gray-500 mb-10 max-w-md mx-auto min-[1015px]:mx-0" style={{ fontSize: "15px", fontWeight: 400, lineHeight: 1.7 }}>
+            <p className="text-gray-500 mb-4 sm:mb-10 max-w-md text-[13px] sm:text-[15px]" style={{ fontWeight: 400, lineHeight: 1.7 }}>
               {hero.description}
             </p>
 
-            <div className="flex flex-wrap gap-4 justify-center min-[1015px]:justify-start">
+            <div className="flex flex-row gap-3">
               <a
                 href={appLink("/companies/new")}
-                className="bg-[#0019DA] text-white px-8 py-3 rounded-full hover:bg-[#0014B0] transition-colors cursor-pointer flex items-center gap-2"
-                style={{ fontSize: "14px", fontWeight: 600 }}
+                className="bg-[#0019DA] text-white px-4 py-2 sm:px-8 sm:py-3 rounded-full hover:bg-[#0014B0] transition-colors cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2"
+                style={{ fontSize: "13px", fontWeight: 600 }}
               >
-                <Building2 size={16} />
+                <Building2 size={14} className="sm:w-4 sm:h-4" />
                 {hero.ctas.secondary}
               </a>
               <a
                 href={appLink("/creator/register")}
-                className="text-[#0019DA] px-8 py-3 rounded-full hover:bg-white/80 transition-all cursor-pointer flex items-center gap-2 backdrop-blur-lg hover:shadow-lg"
-                style={{ fontSize: "14px", fontWeight: 600, backgroundColor: "rgba(255, 255, 255, 0.6)", border: "1px solid rgba(0, 25, 218, 0.15)", boxShadow: "0 2px 20px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04)" }}
+                className="text-[#0019DA] px-4 py-2 sm:px-8 sm:py-3 rounded-full hover:bg-white/80 transition-all cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 backdrop-blur-lg shadow-[0_2px_20px_rgba(0,0,0,0.08),0_1px_4px_rgba(0,0,0,0.04)] hover:shadow-[0_3px_12px_rgba(0,25,218,0.12),0_1px_4px_rgba(0,0,0,0.06)]"
+                style={{ fontSize: "13px", fontWeight: 600, backgroundColor: "rgba(255, 255, 255, 0.6)", border: "1px solid rgba(0, 25, 218, 0.15)" }}
               >
-                <UserRound size={16} />
+                <UserRound size={14} className="sm:w-4 sm:h-4" />
                 {hero.ctas.primary}
               </a>
             </div>
@@ -307,15 +314,15 @@ export default function HomePage() {
 
         <div
           className="absolute bottom-0 left-0 right-0 h-[20%] pointer-events-none"
-          style={{ background: "linear-gradient(to top, rgba(0, 25, 218, 0.04), transparent)" }}
+          style={{ background: "linear-gradient(to top, rgba(0, 25, 218, 0.1), transparent)" }}
         />
       </section>
 
-      {/* How It Works */}
-      <HowItWorks />
+      {/* Campaign Types */}
+      <CampaignTypes />
 
-      {/* Features */}
-      <LandingFeatures />
+      {/* Campaign Features */}
+      <CampaignFeatures />
 
       {/* Pricing */}
       <Pricing />

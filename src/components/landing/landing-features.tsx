@@ -27,7 +27,7 @@ const featureImages = [
 function FloatingLabelPill({ label }: { label: LandingFeatureFloatingLabel }) {
   const Icon = iconMap[label.iconName]
   return (
-    <div className={`absolute ${label.position} z-10`}>
+    <div className={`absolute ${label.position} z-10 scale-[0.85] sm:scale-100`}>
       <div
         className="flex items-center gap-1.5 bg-white rounded-full px-3 py-1.5 shadow-lg border border-gray-100"
         style={{ fontSize: "10px", fontWeight: 600, whiteSpace: "nowrap" }}
@@ -41,7 +41,7 @@ function FloatingLabelPill({ label }: { label: LandingFeatureFloatingLabel }) {
 
 function PhoneMockup({ feature, imageUrl }: { feature: LandingFeatureItem; imageUrl: string }) {
   return (
-    <div className="relative w-full max-w-[240px] mx-auto">
+    <div className="relative w-full max-w-[200px] sm:max-w-[240px] mx-auto">
       <div
         className="relative rounded-[40px] overflow-hidden bg-[#1a1a1a] p-[3px]"
         style={{ aspectRatio: "393/852" }}
@@ -79,7 +79,7 @@ function PhoneMockup({ feature, imageUrl }: { feature: LandingFeatureItem; image
 
 function FeatureBlock({ feature, reversed, imageUrl }: { feature: LandingFeatureItem; reversed: boolean; imageUrl: string }) {
   return (
-    <div className={`flex flex-col ${reversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-12 lg:gap-20`}>
+    <div className={`flex flex-col ${reversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-8 sm:gap-12 lg:gap-20`}>
       <div className="flex-1 max-w-lg">
         <div
           className="inline-block px-4 py-1.5 rounded-full mb-6"
@@ -115,9 +115,9 @@ export function LandingFeatures() {
   const t = dictionary.home.landingFeatures
 
   return (
-    <section className="py-24 lg:py-32">
-      <div className="max-w-[1440px] mx-auto px-8 lg:px-16">
-        <div className="text-center mb-20 lg:mb-28">
+    <section id="platform" className="py-16 sm:py-24 lg:py-32">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-16">
+        <div className="text-center mb-12 sm:mb-20 lg:mb-28">
           <div
             className="inline-block px-5 py-2 rounded-full mb-6"
             style={{ fontSize: "12px", fontWeight: 600, letterSpacing: "0.05em", backgroundColor: "rgba(0, 25, 218, 0.08)", color: "#0019DA" }}
@@ -126,15 +126,15 @@ export function LandingFeatures() {
           </div>
           <h2
             className="text-gray-900 mb-5 whitespace-pre-line"
-            style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.02em" }}
+            style={{ fontSize: "clamp(26px, 4vw, 48px)", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.02em" }}
           >
             {t.title}
           </h2>
-          <p className="text-gray-500 max-w-2xl mx-auto" style={{ fontSize: "16px", fontWeight: 400, lineHeight: 1.7 }}>
+          <p className="text-gray-500 max-w-2xl mx-auto text-[14px] sm:text-[16px]" style={{ fontWeight: 400, lineHeight: 1.7 }}>
             {t.description}
           </p>
         </div>
-        <div className="flex flex-col gap-28 lg:gap-36">
+        <div className="flex flex-col gap-16 sm:gap-28 lg:gap-36">
           {t.items.map((feature, i) => (
             <FeatureBlock key={feature.badge} feature={feature} reversed={i % 2 !== 0} imageUrl={featureImages[i]} />
           ))}
