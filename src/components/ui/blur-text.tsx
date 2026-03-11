@@ -77,7 +77,7 @@ const BlurText: React.FC<BlurTextProps> = ({
   };
 
   return (
-    <Tag ref={ref as React.RefObject<HTMLElement>} className={`${className} inline`}>
+    <Tag ref={ref as React.RefObject<HTMLElement> as any} className={`${className} inline`}>
       {elements.map((segment, index) => {
         const animateKeyframes = buildKeyframes(defaultFrom, defaultTo);
 

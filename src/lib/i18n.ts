@@ -498,6 +498,7 @@ const portuguese: AppDictionary = {
       badge: "TIPOS DE CAMPANHAS",
       title: "Crie o tipo de campanha ideal\npara seu conteúdo",
       description: "Escolha o tipo de campanha que melhor se adapta aos objetivos da sua marca e comece a criar conteúdo que conecta.",
+      scrollLabel: "Deslize para baixo",
       items: [
         {
           iconName: "zap",
