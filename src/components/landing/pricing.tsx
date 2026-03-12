@@ -1,6 +1,6 @@
 "use client"
 
-import { Check, Rocket, TrendingUp, Building2, Users, Megaphone, Percent, ArrowRight, Phone, BadgeDollarSign, type LucideIcon } from "lucide-react"
+import { Check, Shield, Award, Crown, Users, Megaphone, Percent, ArrowRight, BadgeDollarSign, type LucideIcon } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { appLink } from "@/lib/links"
 import ShinyText from "@/components/ui/shiny-text"
@@ -8,9 +8,9 @@ import type { PricingPlan } from "@/lib/i18n"
 
 const planIconMap: Record<string, LucideIcon> = {
   check: Check,
-  rocket: Rocket,
-  trending: TrendingUp,
-  building: Building2,
+  shield: Shield,
+  award: Award,
+  crown: Crown,
 }
 
 const featureIconMap: Record<string, LucideIcon> = {
@@ -158,7 +158,7 @@ function PlanCard({ plan }: { plan: PricingPlan }) {
             )}
           </div>
         ) : (
-          <span style={{ fontSize: "18px", fontWeight: 700, color: "#0A0A1A" }}>
+          <span style={{ fontSize: "18px", fontWeight: 700, color: plan.popular ? "#FFFFFF" : "#0A0A1A" }}>
             {plan.customPriceLabel}
           </span>
         )}
@@ -192,19 +192,17 @@ function PlanCard({ plan }: { plan: PricingPlan }) {
       </ul>
 
       <a
-        href={plan.price ? appLink("/creator/register") : appLink("/companies/new")}
+        href={appLink("/creator/register")}
         className="w-full py-3 rounded-lg flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer hover:opacity-90"
         style={{
-          backgroundColor: plan.popular ? "#FFFFFF" : plan.price ? "#0019DA" : "transparent",
-          color: plan.popular ? "#0019DA" : plan.price ? "#FFFFFF" : "#0019DA",
+          backgroundColor: plan.popular ? "#FFFFFF" : "#0019DA",
+          color: plan.popular ? "#0019DA" : "#FFFFFF",
           fontSize: "13px",
           fontWeight: 600,
-          border: !plan.price ? "2px solid #0019DA" : "none",
         }}
       >
-        {!plan.price && <Phone size={15} />}
         {plan.cta}
-        {plan.price !== null && <ArrowRight size={15} />}
+        <ArrowRight size={15} />
       </a>
     </div>
   )

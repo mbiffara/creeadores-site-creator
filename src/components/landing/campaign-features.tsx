@@ -93,11 +93,11 @@ export function CampaignFeatures() {
             {t.description}
           </p>
           <a
-            href={appLink("/companies/new")}
+            href={appLink("/creator/register")}
             className="inline-flex items-center gap-2 mt-6 bg-[#0019DA] text-white px-6 py-2.5 sm:px-8 sm:py-3 rounded-full hover:bg-[#0014B0] transition-colors cursor-pointer"
             style={{ fontSize: "14px", fontWeight: 600 }}
           >
-            Registrarse Gratis
+            Crear mi perfil
             <ArrowRight size={16} />
           </a>
         </div>
