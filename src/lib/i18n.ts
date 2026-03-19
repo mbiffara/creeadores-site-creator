@@ -236,7 +236,7 @@ const english: AppDictionary = {
       cta: {
         badge: "REPUTATION",
         title: "\u2728 Your next campaign is waiting \u2728",
-        subtitle: "Join thousands of creators already monetizing their content on Creeadores.",
+        subtitle: "Join creators already monetizing their content on Creeadores.",
         primaryButton: "Sign up for free",
         secondaryButton: "See opportunities",
       },
@@ -399,7 +399,7 @@ const spanish: AppDictionary = {
       cta: {
         badge: "REPUTACIÓN",
         title: "✨ Tu próxima campaña te está esperando ✨",
-        subtitle: "Unite a miles de creadores que ya están monetizando su contenido en Creeadores.",
+        subtitle: "Unite a creadores que ya están monetizando su contenido en Creeadores.",
         primaryButton: "Registrate gratis",
         secondaryButton: "Ver oportunidades",
       },
@@ -562,7 +562,7 @@ const portuguese: AppDictionary = {
       cta: {
         badge: "REPUTAÇÃO",
         title: "✨ Sua próxima campanha está esperando ✨",
-        subtitle: "Junte-se a milhares de criadores que já estão monetizando seu conteúdo no Creeadores.",
+        subtitle: "Junte-se a criadores que já estão monetizando seu conteúdo no Creeadores.",
         primaryButton: "Cadastre-se grátis",
         secondaryButton: "Ver oportunidades",
       },
