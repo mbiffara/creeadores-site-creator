@@ -8,7 +8,7 @@ import { isThemePreference, resolveTheme, THEME_COOKIE_NAME, type ThemePreferenc
 import { LANGUAGE_COOKIE_NAME, resolveLocale } from "@/lib/i18n"
 
 const SITE_URL = "https://creeadores.com"
-const SEO_TITLE = "Creeadores | Encuentra UGC/Influencers para tu Marca"
+const SEO_TITLE = "Creeadores | Monetiza tu Contenido"
 const SEO_DESCRIPTION =
   "Conectamos marcas con creadores de contenido. Crea campañas, encuentra creadores de contenido, gestiona sus entregables y pagos en una sola plataforma."
 const SEO_KEYWORDS =

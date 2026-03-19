@@ -7,8 +7,26 @@ export const LANGUAGE_COOKIE_NAME = "creeadores-language";
 
 export type HowItWorksStep = {
   number: string;
+  iconName: string;
   title: string;
   description: string;
+  accentColor: string;
+  bullets: string[];
+};
+
+export type HowItWorksStat = {
+  value: string;
+  label: string;
+  description: string;
+  accentColor: string;
+  iconName: string;
+};
+
+export type HowItWorksTestimonial = {
+  quote: string;
+  name: string;
+  handle: string;
+  avatar: string;
 };
 
 export type LandingFeatureFloatingLabel = {
@@ -102,9 +120,21 @@ export type HomeDictionary = {
   howItWorks: {
     badge: string;
     title: string;
+    subtitle: string;
     description: string;
     stepLabel: string;
     steps: HowItWorksStep[];
+    socialProof: {
+      stats: HowItWorksStat[];
+      testimonials: HowItWorksTestimonial[];
+    };
+    cta: {
+      badge: string;
+      title: string;
+      subtitle: string;
+      primaryButton: string;
+      secondaryButton: string;
+    };
   };
   landingFeatures: {
     badge: string;
@@ -129,6 +159,7 @@ export type HomeDictionary = {
     badge: string;
     title: string;
     description: string;
+    ctaButton: string;
     plans: PricingPlan[];
   };
   landingFooter: {
@@ -169,10 +200,9 @@ const english: AppDictionary = {
     },
     nav: {
       links: [
+        { label: "I'm a brand", href: "#brands" },
         { label: "How it works", href: "#how-it-works" },
-        { label: "Opportunities", href: "#campaigns" },
-        { label: "Features", href: "#features" },
-        { label: "Your reputation", href: "#pricing" },
+        { label: "Reputation", href: "#pricing" },
       ],
       signIn: "Sign in",
       startFree: "Sign up for free",
@@ -184,14 +214,32 @@ const english: AppDictionary = {
     howItWorks: {
       badge: "EASY AS THAT",
       title: "How does it work?",
-      description: "Start monetizing your content in 4 simple steps.",
+      subtitle: "Create your profile, apply to campaigns, negotiate your terms, deliver content, and get paid securely — all without leaving the platform.",
+      description: "Start monetizing your content in 5 simple steps.",
       stepLabel: "STEP",
       steps: [
-        { number: "01", title: "Create your profile", description: "Build your portfolio, set your rates, and showcase your best content. Brands will find you by your niche, location, and style." },
-        { number: "02", title: "Apply to campaigns", description: "Explore active campaigns from real brands and apply to those that match your profile. Filter by type, budget, and category." },
-        { number: "03", title: "Create content", description: "Receive the brief, negotiate terms, and produce amazing content. The entire process is managed from the platform." },
-        { number: "04", title: "Get paid securely", description: "When the brand approves your content, payment is released automatically. No risks, no delays." },
+        { number: "01", iconName: "user-plus", accentColor: "#0019DA", title: "Build your profile", description: "Create a portfolio that represents you and let brands discover you by your niche, audience, and style.", bullets: ["Upload your best content", "Set your rates by content type", "Showcase your metrics and audience"] },
+        { number: "02", iconName: "inbox", accentColor: "#7C3AED", title: "Receive applications", description: "Brands find you through our smart search. Review proposals and choose the campaigns that align with your personal brand.", bullets: ["Get matched with relevant brands", "Review campaign details before committing", "Filter by budget, category, and type"] },
+        { number: "03", iconName: "handshake", accentColor: "#ED4B00", title: "Negotiate your value", description: "No fixed rates. You negotiate directly with the brand and agree on terms that work for both sides.", bullets: ["Send and receive counteroffers", "Define deliverables and timelines", "Full transparency on both sides"] },
+        { number: "04", iconName: "layers", accentColor: "#059669", title: "Work on multiple campaigns", description: "Manage several collaborations at once from a single dashboard. Track briefs, deadlines, and deliveries effortlessly.", bullets: ["Centralized campaign dashboard", "Track progress in real time", "Communicate directly with brands"] },
+        { number: "05", iconName: "shield-check", accentColor: "#0891B2", title: "Get paid securely", description: "Your payment is secured from the start. When the brand approves your content, the money is available to withdraw.", bullets: ["Protected payments", "Funds sent in a short time", "Multiple withdrawal methods"] },
       ],
+      socialProof: {
+        stats: [
+          { value: "1+ campaigns", label: "Bronze", description: "Verified profile & unlimited applications", accentColor: "#CD7F32", iconName: "🥉" },
+          { value: "10+ campaigns", label: "Silver", description: "Priority in applications & exclusive campaigns", accentColor: "#9CA3AF", iconName: "🥈" },
+          { value: "100+ campaigns", label: "Gold", description: "Maximum visibility & direct brand invitations", accentColor: "#F59E0B", iconName: "🥇" },
+          { value: "500+ campaigns", label: "Platinum", description: "Elite status & premium opportunities", accentColor: "#0891B2", iconName: "💎" },
+        ],
+        testimonials: [],
+      },
+      cta: {
+        badge: "REPUTATION",
+        title: "\u2728 Your next campaign is waiting \u2728",
+        subtitle: "Join thousands of creators already monetizing their content on Creeadores.",
+        primaryButton: "Sign up for free",
+        secondaryButton: "See opportunities",
+      },
     },
     landingFeatures: {
       badge: "FEATURES",
@@ -280,6 +328,7 @@ const english: AppDictionary = {
       badge: "REPUTATION",
       title: "Your reputation is\nyour best asset",
       description: "Each completed campaign builds your reputation. Level up and access better opportunities.",
+      ctaButton: "Start monetizing your content",
       plans: [
         { name: "New", description: "You just arrived at Creeadores", price: null, period: "", features: [{ iconName: "users", text: "Basic profile" }, { iconName: "megaphone", text: "Limited applications" }, { iconName: "percent", text: "New creator badge" }], cta: "Create my profile", popular: false, iconName: "check", customPriceLabel: "Start here" },
         { name: "Bronze", description: "You completed your first campaigns", price: null, period: "", features: [{ iconName: "users", text: "Verified profile" }, { iconName: "megaphone", text: "Unlimited applications" }, { iconName: "percent", text: "Visible in brand search" }], cta: "Start now", popular: false, iconName: "shield", customPriceLabel: "1+ campaigns" },
@@ -289,7 +338,7 @@ const english: AppDictionary = {
     },
     landingFooter: {
       description: "Monetize your content by connecting with the best brands and agencies in Latin America.",
-      links: ["Opportunities", "How it works", "Features", "Reputation"],
+      links: ["Opportunities", "How it works", "Reputation"],
       copyright: "\u00a9 2026 Creadores. All rights reserved.",
       legal: ["Privacy", "Terms", "Cookies"],
     },
@@ -314,10 +363,9 @@ const spanish: AppDictionary = {
     },
     nav: {
       links: [
-        { label: "C\u00f3mo funciona", href: "#how-it-works" },
-        { label: "Oportunidades", href: "#campaigns" },
-        { label: "Funcionalidades", href: "#features" },
-        { label: "Tu reputaci\u00f3n", href: "#pricing" },
+        { label: "Soy Marca", href: "#brands" },
+        { label: "C\u00f3mo Funciona", href: "#how-it-works" },
+        { label: "Reputaci\u00f3n", href: "#pricing" },
       ],
       signIn: "Iniciar sesion",
       startFree: "Registrate gratis",
@@ -327,16 +375,34 @@ const spanish: AppDictionary = {
       },
     },
     howItWorks: {
-      badge: "AS\u00cd DE F\u00c1CIL",
-      title: "\u00bfC\u00f3mo funciona?",
-      description: "Empez\u00e1 a monetizar tu contenido en 4 simples pasos.",
+      badge: "ASÍ DE FÁCIL",
+      title: "¿Cómo funciona?",
+      subtitle: "Cre\u00e1 tu perfil, postulate a campa\u00f1as, negoci\u00e1 tus t\u00e9rminos, entreg\u00e1 contenido y cobr\u00e1 de forma segura \u2014 todo sin salir de la plataforma.",
+      description: "Empezá a monetizar tu contenido en 5 simples pasos.",
       stepLabel: "PASO",
       steps: [
-        { number: "01", title: "Cre\u00e1 tu perfil", description: "Arm\u00e1 tu portafolio, defin\u00ed tus tarifas y mostr\u00e1 tu mejor contenido. Las marcas te van a encontrar por tu nicho, ubicaci\u00f3n y estilo." },
-        { number: "02", title: "Postulate a campa\u00f1as", description: "Explor\u00e1 campa\u00f1as activas de marcas reales y postulate a las que encajen con tu perfil. Filtr\u00e1 por tipo, presupuesto y categor\u00eda." },
-        { number: "03", title: "Cre\u00e1 contenido", description: "Recib\u00ed el brief, negoci\u00e1 los t\u00e9rminos y produc\u00ed contenido incre\u00edble. Todo el proceso se gestiona desde la plataforma." },
-        { number: "04", title: "Cobr\u00e1 seguro", description: "Cuando la marca apruebe tu contenido, el pago se libera autom\u00e1ticamente. Sin riesgos, sin demoras." },
+        { number: "01", iconName: "user-plus", accentColor: "#0019DA", title: "Armá tu perfil", description: "Creá un portafolio que te represente y dejá que las marcas te descubran por tu nicho, audiencia y estilo.", bullets: ["Subí tu mejor contenido", "Definí tus tarifas por tipo de contenido", "Mostrá tus métricas y audiencia"] },
+        { number: "02", iconName: "inbox", accentColor: "#7C3AED", title: "Recibí postulaciones", description: "Las marcas te encuentran a través de nuestra búsqueda inteligente. Revisá propuestas y elegí las campañas que se alineen con tu marca personal.", bullets: ["Recibí matches con marcas relevantes", "Revisá los detalles antes de comprometerte", "Filtrá por presupuesto, categoría y tipo"] },
+        { number: "03", iconName: "handshake", accentColor: "#ED4B00", title: "Negociá tu valor", description: "Sin tarifas fijas. Negociás directamente con la marca y acordás términos que funcionen para ambos.", bullets: ["Enviá y recibí contraofertas", "Definí entregables y plazos", "Transparencia total de ambos lados"] },
+        { number: "04", iconName: "layers", accentColor: "#059669", title: "Trabajá en múltiples campañas", description: "Gestioná varias colaboraciones a la vez desde un solo dashboard. Seguí briefs, deadlines y entregas sin esfuerzo.", bullets: ["Dashboard centralizado de campañas", "Seguí el progreso en tiempo real", "Comunicación directa con marcas"] },
+        { number: "05", iconName: "shield-check", accentColor: "#0891B2", title: "Cobrá de forma segura", description: "Tu pago queda asegurado desde el inicio. Cuando la marca aprueba tu contenido, el dinero está disponible para solicitar.", bullets: ["Pagos protegidos", "Débitos enviados en poco tiempo", "Múltiples métodos de retiro"] },
       ],
+      socialProof: {
+        stats: [
+          { value: "1+ campañas", label: "Bronce", description: "Perfil verificado y postulaciones ilimitadas", accentColor: "#CD7F32", iconName: "🥉" },
+          { value: "10+ campañas", label: "Plata", description: "Prioridad en postulaciones y campañas exclusivas", accentColor: "#9CA3AF", iconName: "🥈" },
+          { value: "100+ campañas", label: "Oro", description: "Máxima visibilidad e invitaciones directas de marcas", accentColor: "#F59E0B", iconName: "🥇" },
+          { value: "500+ campañas", label: "Platino", description: "Estatus élite y oportunidades premium", accentColor: "#0891B2", iconName: "💎" },
+        ],
+        testimonials: [],
+      },
+      cta: {
+        badge: "REPUTACIÓN",
+        title: "✨ Tu próxima campaña te está esperando ✨",
+        subtitle: "Unite a miles de creadores que ya están monetizando su contenido en Creeadores.",
+        primaryButton: "Registrate gratis",
+        secondaryButton: "Ver oportunidades",
+      },
     },
     landingFeatures: {
       badge: "FUNCIONALIDADES",
@@ -425,6 +491,7 @@ const spanish: AppDictionary = {
       badge: "REPUTACI\u00d3N",
       title: "Tu reputaci\u00f3n es\ntu mejor activo",
       description: "Cada campa\u00f1a completada construye tu reputaci\u00f3n. Sub\u00ed de nivel y acced\u00e9 a mejores oportunidades.",
+      ctaButton: "Comienza a monetizar tu contenido",
       plans: [
         { name: "Nuevo", description: "Reci\u00e9n llegaste a Creeadores", price: null, period: "", features: [{ iconName: "users", text: "Perfil b\u00e1sico" }, { iconName: "megaphone", text: "Postulaciones limitadas" }, { iconName: "percent", text: "Badge de nuevo creador" }], cta: "Crear mi perfil", popular: false, iconName: "check", customPriceLabel: "Empez\u00e1 ac\u00e1" },
         { name: "Bronce", description: "Completaste tus primeras campa\u00f1as", price: null, period: "", features: [{ iconName: "users", text: "Perfil verificado" }, { iconName: "megaphone", text: "Postulaciones ilimitadas" }, { iconName: "percent", text: "Visible en b\u00fasqueda de marcas" }], cta: "Empezar ahora", popular: false, iconName: "shield", customPriceLabel: "1+ campa\u00f1as" },
@@ -434,7 +501,7 @@ const spanish: AppDictionary = {
     },
     landingFooter: {
       description: "Monetiz\u00e1 tu contenido conectando con las mejores marcas y agencias de Latinoam\u00e9rica.",
-      links: ["Oportunidades", "C\u00f3mo funciona", "Funcionalidades", "Reputaci\u00f3n"],
+      links: ["Oportunidades", "C\u00f3mo funciona", "Reputaci\u00f3n"],
       copyright: "\u00a9 2026 Creadores. Todos los derechos reservados.",
       legal: ["Privacidad", "T\u00e9rminos", "Cookies"],
     },
@@ -459,10 +526,9 @@ const portuguese: AppDictionary = {
     },
     nav: {
       links: [
+        { label: "Sou uma marca", href: "#brands" },
         { label: "Como funciona", href: "#how-it-works" },
-        { label: "Oportunidades", href: "#campaigns" },
-        { label: "Funcionalidades", href: "#features" },
-        { label: "Sua reputa\u00e7\u00e3o", href: "#pricing" },
+        { label: "Reputa\u00e7\u00e3o", href: "#pricing" },
       ],
       signIn: "Entrar",
       startFree: "Cadastre-se gr\u00e1tis",
@@ -472,16 +538,34 @@ const portuguese: AppDictionary = {
       },
     },
     howItWorks: {
-      badge: "F\u00c1CIL ASSIM",
+      badge: "FÁCIL ASSIM",
       title: "Como funciona?",
-      description: "Comece a monetizar seu conte\u00fado em 4 simples passos.",
+      subtitle: "Crie seu perfil, candidate-se a campanhas, negocie seus termos, entregue conte\u00fado e receba com seguran\u00e7a \u2014 tudo sem sair da plataforma.",
+      description: "Comece a monetizar seu conteúdo em 5 simples passos.",
       stepLabel: "PASSO",
       steps: [
-        { number: "01", title: "Crie seu perfil", description: "Monte seu portf\u00f3lio, defina suas tarifas e mostre seu melhor conte\u00fado. As marcas v\u00e3o te encontrar pelo seu nicho, localiza\u00e7\u00e3o e estilo." },
-        { number: "02", title: "Candidate-se a campanhas", description: "Explore campanhas ativas de marcas reais e candidate-se \u00e0s que combinam com seu perfil. Filtre por tipo, or\u00e7amento e categoria." },
-        { number: "03", title: "Crie conte\u00fado", description: "Receba o briefing, negocie os termos e produza conte\u00fado incr\u00edvel. Todo o processo \u00e9 gerenciado pela plataforma." },
-        { number: "04", title: "Receba com seguran\u00e7a", description: "Quando a marca aprovar seu conte\u00fado, o pagamento \u00e9 liberado automaticamente. Sem riscos, sem atrasos." },
+        { number: "01", iconName: "user-plus", accentColor: "#0019DA", title: "Monte seu perfil", description: "Crie um portfólio que te represente e deixe as marcas te descobrirem pelo seu nicho, audiência e estilo.", bullets: ["Suba seu melhor conteúdo", "Defina suas tarifas por tipo de conteúdo", "Mostre suas métricas e audiência"] },
+        { number: "02", iconName: "inbox", accentColor: "#7C3AED", title: "Receba candidaturas", description: "As marcas te encontram através da nossa busca inteligente. Revise propostas e escolha as campanhas que se alinham com sua marca pessoal.", bullets: ["Receba matches com marcas relevantes", "Revise os detalhes antes de se comprometer", "Filtre por orçamento, categoria e tipo"] },
+        { number: "03", iconName: "handshake", accentColor: "#ED4B00", title: "Negocie seu valor", description: "Sem tarifas fixas. Você negocia diretamente com a marca e combina termos que funcionem para ambos.", bullets: ["Envie e receba contrapropostas", "Defina entregas e prazos", "Transparência total de ambos os lados"] },
+        { number: "04", iconName: "layers", accentColor: "#059669", title: "Trabalhe em múltiplas campanhas", description: "Gerencie várias colaborações ao mesmo tempo em um único dashboard. Acompanhe briefings, prazos e entregas sem esforço.", bullets: ["Dashboard centralizado de campanhas", "Acompanhe o progresso em tempo real", "Comunicação direta com marcas"] },
+        { number: "05", iconName: "shield-check", accentColor: "#0891B2", title: "Receba com segurança", description: "Seu pagamento fica garantido desde o início. Quando a marca aprova seu conteúdo, o dinheiro está disponível para solicitar.", bullets: ["Pagamentos protegidos", "Débitos enviados em pouco tempo", "Múltiplos métodos de saque"] },
       ],
+      socialProof: {
+        stats: [
+          { value: "1+ campanhas", label: "Bronze", description: "Perfil verificado e candidaturas ilimitadas", accentColor: "#CD7F32", iconName: "🥉" },
+          { value: "10+ campanhas", label: "Prata", description: "Prioridade em candidaturas e campanhas exclusivas", accentColor: "#9CA3AF", iconName: "🥈" },
+          { value: "100+ campanhas", label: "Ouro", description: "Máxima visibilidade e convites diretos de marcas", accentColor: "#F59E0B", iconName: "🥇" },
+          { value: "500+ campanhas", label: "Platina", description: "Status elite e oportunidades premium", accentColor: "#0891B2", iconName: "💎" },
+        ],
+        testimonials: [],
+      },
+      cta: {
+        badge: "REPUTAÇÃO",
+        title: "✨ Sua próxima campanha está esperando ✨",
+        subtitle: "Junte-se a milhares de criadores que já estão monetizando seu conteúdo no Creeadores.",
+        primaryButton: "Cadastre-se grátis",
+        secondaryButton: "Ver oportunidades",
+      },
     },
     landingFeatures: {
       badge: "FUNCIONALIDADES",
@@ -579,7 +663,7 @@ const portuguese: AppDictionary = {
     },
     landingFooter: {
       description: "Monetize seu conte\u00fado conectando com as melhores marcas e ag\u00eancias da Am\u00e9rica Latina.",
-      links: ["Oportunidades", "Como funciona", "Funcionalidades", "Reputa\u00e7\u00e3o"],
+      links: ["Oportunidades", "Como funciona", "Reputa\u00e7\u00e3o"],
       copyright: "\u00a9 2026 Creadores. Todos os direitos reservados.",
       legal: ["Privacidade", "Termos", "Cookies"],
     },

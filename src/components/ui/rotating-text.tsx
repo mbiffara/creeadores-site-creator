@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useCallback, useEffect, useState, useMemo } from 'react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence, Transition } from 'motion/react';
 
 interface RotatingTextProps {
@@ -25,11 +25,8 @@ const RotatingText: React.FC<RotatingTextProps> = ({
   textStyle,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const longestText = useMemo(
-    () => texts.reduce((a, b) => (a.length >= b.length ? a : b), ''),
-    [texts]
-  );
+  const [width, setWidth] = useState<number | undefined>(undefined);
+  const measureRef = useRef<HTMLSpanElement>(null);
 
   const next = useCallback(() => {
     setCurrentIndex(prev => {
@@ -44,11 +41,22 @@ const RotatingText: React.FC<RotatingTextProps> = ({
     return () => clearInterval(id);
   }, [next, rotationInterval, auto]);
 
+  useEffect(() => {
+    if (measureRef.current) {
+      setWidth(measureRef.current.offsetWidth);
+    }
+  }, [currentIndex, texts]);
+
   return (
-    <span className={`inline-block relative align-baseline ${className}`}>
-      {/* Invisible text to hold width and establish baseline */}
-      <span className="invisible" aria-hidden="true">{longestText}{children}</span>
-      {/* Overflow-hidden on inner wrapper so outer inline-block keeps correct baseline */}
+    <span
+      className={`inline-block relative align-baseline ${className}`}
+      style={{ width: width !== undefined ? `${width}px` : 'auto', transition: 'width 0.3s ease' }}
+    >
+      {/* Hidden measurer for current text */}
+      <span ref={measureRef} className="invisible whitespace-nowrap" aria-hidden="true">
+        {texts[currentIndex]}{children}
+      </span>
+      {/* Animated text */}
       <span className="absolute inset-0 overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.span
@@ -57,7 +65,7 @@ const RotatingText: React.FC<RotatingTextProps> = ({
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: '-100%', opacity: 0 }}
             transition={transition}
-            className="block"
+            className="block whitespace-nowrap"
             style={textStyle}
             aria-label={texts[currentIndex]}
           >
