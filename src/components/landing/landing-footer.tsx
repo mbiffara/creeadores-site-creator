@@ -3,17 +3,15 @@
 import { Instagram, Linkedin } from "lucide-react"
 import Link from "next/link"
 import { Logo } from "@/components/logo"
-import { TikTokIcon } from "@/components/ui/tiktok-icon"
 import { useLanguage } from "@/components/language-provider"
 import { appLink } from "@/lib/links"
 
 const socials = [
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: TikTokIcon, href: "#", label: "TikTok" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
+  { icon: Instagram, href: "https://www.instagram.com/creeadores/followers/", label: "Instagram" },
+  { icon: Linkedin, href: "https://www.linkedin.com/company/reecreativos/posts/?feedView=all", label: "LinkedIn" },
 ]
 
-const legalPaths = ["/privacy", "/terms", "/cookies"]
+const legalPaths = ["https://www.creeadores.com/privacy-policy", "https://www.creeadores.com/terms-of-service"]
 
 export function LandingFooter() {
   const { dictionary } = useLanguage()
@@ -39,7 +37,7 @@ export function LandingFooter() {
             {dictionary.home.nav.links.map((link) => (
               <a
                 key={link.href}
-                href={link.href.startsWith("#") ? link.href : appLink(link.href)}
+                href={link.href.startsWith("#") ? link.href : link.href.startsWith("http") ? link.href : appLink(link.href)}
                 className="group relative text-white/60 hover:text-white transition-colors pb-1 text-[12px] sm:text-[13px]"
                 style={{ fontWeight: 500 }}
               >

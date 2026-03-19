@@ -5,7 +5,8 @@ import { Building2, ChevronDown, Handshake, UserRound } from "lucide-react"
 import { Logo } from "@/components/logo"
 import { useLanguage } from "@/components/language-provider"
 import { appLink } from "@/lib/links"
-import { HowItWorks } from "@/components/landing/how-it-works"
+import { CampaignTypes } from "@/components/landing/campaign-types"
+import { CampaignFeatures } from "@/components/landing/campaign-features"
 import { Pricing } from "@/components/landing/pricing"
 import { LandingFooter } from "@/components/landing/landing-footer"
 import RotatingText from "@/components/ui/rotating-text"
@@ -34,7 +35,7 @@ function LandingHeader() {
           {nav.links.map((link) => (
             <a
               key={link.href}
-              href={link.href.startsWith("#") ? link.href : appLink(link.href)}
+              href={link.href.startsWith("#") ? link.href : link.href.startsWith("http") ? link.href : appLink(link.href)}
               className="group relative text-white/70 hover:text-white transition-colors pb-1"
               style={{ fontSize: "14px", fontWeight: 500 }}
             >
@@ -160,16 +161,14 @@ export default function HomePage() {
         {/* Subtle dot texture */}
         <div className="absolute inset-0 pointer-events-none z-0" style={{ backgroundImage: "radial-gradient(circle, rgba(0, 25, 218, 0.07) 1.2px, transparent 1.2px)", backgroundSize: "16px 16px" }} />
 
-        {/* Hero text content */}
-        <div className="min-h-[90vh] md:min-h-[calc(75vh-12px)] lg:min-h-[calc(84vh-12px)] max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 relative z-20 flex items-center justify-start">
-          <div className="w-full flex flex-col lg:flex-row items-center lg:items-center gap-10 sm:gap-10 lg:gap-8 py-8 sm:py-12">
-            {/* Left: Text content */}
-            <div className="w-full lg:w-1/2 text-center lg:text-left flex flex-col items-center lg:items-start">
+        {/* Hero text content — centered */}
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 relative z-20 pt-12 sm:pt-20 pb-12 sm:pb-20">
+          <div className="flex flex-col items-center text-center">
               <div
                 className="inline-flex items-center gap-2 sm:gap-2.5 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full mb-3 sm:mb-6 backdrop-blur-lg animate-shine"
                 style={{ backgroundColor: "rgba(255, 255, 255, 0.6)", border: "1px solid rgba(0, 25, 218, 0.25)", boxShadow: "0 2px 20px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04)" }}
               >
-                <span className="flex items-center gap-1.5 uppercase text-[9px] sm:text-[10px]" style={{ fontWeight: 700, letterSpacing: "0.06em", color: "#030870" }}>
+                <span className="flex items-center gap-1.5 uppercase text-[12px]" style={{ fontWeight: 700, letterSpacing: "0.06em", color: "#030870" }}>
                   <Handshake size={13} />
                   {hero.badge}
                 </span>
@@ -210,7 +209,7 @@ export default function HomePage() {
               </div>
 
               <h1
-                className="text-[#0019DA] mb-3 sm:mb-6 drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)] sm:whitespace-nowrap"
+                className="text-[#0019DA] mb-3 sm:mb-6 drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)]"
                 style={{ fontSize: "clamp(28px, 5vw, 52px)", fontWeight: 800, lineHeight: 1.1, letterSpacing: "-0.02em" }}
               >
                 <span style={{ letterSpacing: "-0.05em" }}>{hero.line1} {hero.line2}</span><br /><RotatingText
@@ -223,32 +222,36 @@ export default function HomePage() {
                 </RotatingText>
               </h1>
 
-              <p className="text-gray-500 mb-4 sm:mb-10 max-w-lg text-[12px] sm:text-[14px]" style={{ fontWeight: 400, lineHeight: 1.7 }}>
+              <p className="text-gray-500 mb-4 sm:mb-8 max-w-lg text-[12px] sm:text-[14px]" style={{ fontWeight: 400, lineHeight: 1.7 }}>
                 {hero.description}
               </p>
 
               <div className="flex flex-row gap-3">
                 <a
                   href={appLink("/creator/register")}
-                  className="bg-[#0019DA] text-white px-4 py-2 sm:px-6 sm:py-2.5 rounded-full hover:bg-[#0014B0] transition-colors cursor-pointer flex items-center justify-center gap-1.5"
-                  style={{ fontSize: "12px", fontWeight: 600 }}
+                  className="text-[#0019DA] px-5 py-2.5 sm:px-7 sm:py-3 rounded-full transition-all duration-300 cursor-pointer flex items-center justify-center gap-2"
+                  style={{ fontSize: "13px", fontWeight: 600, backgroundColor: "white", border: "2px solid rgba(0, 25, 218, 0.2)", boxShadow: "0 2px 12px rgba(0, 25, 218, 0.08)" }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = "linear-gradient(135deg, rgba(0,25,218,0.06) 0%, rgba(75,60,255,0.10) 100%)"; e.currentTarget.style.borderColor = "rgba(0, 25, 218, 0.35)" }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = "white"; e.currentTarget.style.borderColor = "rgba(0, 25, 218, 0.2)" }}
                 >
-                  <UserRound size={13} className="sm:w-3.5 sm:h-3.5" />
+                  <UserRound size={15} />
                   {hero.ctas.primary}
                 </a>
                 <a
-                  href="#campaigns"
-                  className="text-[#0019DA] px-4 py-2 sm:px-6 sm:py-2.5 rounded-full hover:bg-white/80 transition-all cursor-pointer flex items-center justify-center gap-1.5 backdrop-blur-lg shadow-[0_2px_20px_rgba(0,0,0,0.08),0_1px_4px_rgba(0,0,0,0.04)] hover:shadow-[0_3px_12px_rgba(0,25,218,0.12),0_1px_4px_rgba(0,0,0,0.06)]"
-                  style={{ fontSize: "12px", fontWeight: 600, backgroundColor: "rgba(255, 255, 255, 0.6)", border: "1px solid rgba(0, 25, 218, 0.15)" }}
+                  href="https://creeadores.com"
+                  className="bg-[#0019DA] text-white px-5 py-2.5 sm:px-7 sm:py-3 rounded-full hover:bg-[#0014B0] transition-colors cursor-pointer flex items-center justify-center gap-2"
+                  style={{ fontSize: "13px", fontWeight: 600 }}
                 >
+                  <Building2 size={15} />
                   {hero.ctas.secondary}
                 </a>
               </div>
-            </div>
-
-            {/* Right: 3D Phone Carousel */}
-            <HeroCarousel onPlayClick={openVideoModal} />
           </div>
+        </div>
+
+        {/* iPhone marquee */}
+        <div className="relative z-20 pb-6 sm:pb-10">
+          <HeroCarousel />
         </div>
 
         <div
@@ -259,10 +262,13 @@ export default function HomePage() {
 
 
 
-      {/* How It Works */}
-      <HowItWorks />
+      {/* Campaign Types */}
+      <CampaignTypes />
 
-      {/* Reputation */}
+      {/* Campaign Features */}
+      <CampaignFeatures />
+
+      {/* Pricing / Reputation */}
       <Pricing />
 
       {/* Footer */}

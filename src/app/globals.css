@@ -147,6 +147,28 @@
   100% { transform: translateX(100%); }
 }
 
+@keyframes shine-loop {
+  0% { transform: translateX(-150%); }
+  20% { transform: translateX(150%); }
+  100% { transform: translateX(150%); }
+}
+
+.animate-shine-loop {
+  animation: shine-loop 3s ease-in-out infinite;
+  background: linear-gradient(120deg, transparent 20%, rgba(255,255,255,0.5) 50%, transparent 80%);
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes hero-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-hero-marquee {
+  animation: hero-marquee 40s linear infinite;
+}
+
 .animate-shine {
   position: relative;
   overflow: hidden;

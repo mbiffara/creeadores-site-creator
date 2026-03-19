@@ -34,8 +34,7 @@ const iconMap: Record<string, LucideIcon> = {
 }
 
 const blockAccent = [
-  { color: "#0019DA", bg: "rgba(0, 25, 218, 0.08)", gradientAlpha: "12" },
-  { color: "#7C3AED", bg: "rgba(124, 58, 237, 0.08)", gradientAlpha: "22" },
+  { color: "#E04006", bg: "rgba(224, 64, 6, 0.10)", gradientAlpha: "14" },
   { color: "#059669", bg: "rgba(5, 150, 105, 0.08)", gradientAlpha: "12" },
 ]
 
